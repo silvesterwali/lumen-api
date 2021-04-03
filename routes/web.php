@@ -23,8 +23,19 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('login', 'AuthController@login');
 });
 
-$router->group(["middleware" => "api", "prefix" => "auth"], function () use ($router) {
-    $router->post("logout", "AuthController@logout");
-    $router->get("refresh", "AuthController@refresh");
-    $router->get("me", "AuthController@me");
+// all route with authorize
+
+$router->group(["middleware" => "auth:api", "prefix" => "api"], function () use ($router) {
+
+    // route for user basic
+    $router->group(["prefix" => "auth"], function () use ($router) {
+        $router->post("logout", "AuthController@logout");
+        $router->get("refresh", "AuthController@refresh");
+        $router->get("me", "AuthController@me");
+    });
+    // end of user basic
+
+    // route for module
+    $router->post("module", "ModuleController@store");
+    // end of route module
 });
