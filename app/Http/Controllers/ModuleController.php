@@ -25,10 +25,10 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-
-        if ($request->user()->cannot("create-module")) {
-            abort(403, "Permission Denied");
-        }
+        $this->authorize("create", Module::class);
+        // if ($request->user()->cannot("create-module")) {
+        //     abort(403, "Permission Denied");
+        // }
 
         Module::created($request);
         return response(["message" => "success add module"]);

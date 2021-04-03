@@ -51,6 +51,6 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     }
     public function isAdmin()
     {
-        return $this->role === 1;
+        return $this->role === 0;
     }
 }
