@@ -14,7 +14,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::createMany([
+        Role::insert([
             [
                 "name" => "super-admin",
 
