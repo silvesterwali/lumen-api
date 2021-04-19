@@ -111,6 +111,38 @@ class PermissionController extends Controller
 
 
     /**
+     * get user permission via role 
+     * @param int $user_id 
+     *
+    */
+    public function getUserPermissionViaRole($user_id){
+
+        $user=User::find($user_id);
+
+        $user->getPermissionViaRole();
+
+
+        return response($user);
+    }
+
+    
+
+    /**
+     * get user with all permission 
+     * @param int $user_id
+    */
+    public function getUserWithAllPermission($user_id){
+        
+        $user=User::find($user_id);
+
+        $user->getAllPermissions();
+
+        return response($user);
+    
+    }
+
+
+    /**
      * revoke a permission from user and create new one permission
      * @param \Illuminate\Http\Request $request;
      * @param int $user_id 
