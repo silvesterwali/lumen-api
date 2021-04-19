@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Contracts\Service\Attribute\Required;
+
 
 class RoleController extends Controller
 {
@@ -155,6 +155,43 @@ class RoleController extends Controller
         $userRoles=$user->hasAllRoles(Role::all());
 
         return response($userRoles);
+    }
+
+
+    /**
+     * get all user with same role
+     * @return \Illuminate\Http\Response;
+    */
+    public function user_with_same_role($role){
+
+        $users=User::role($role)->pagination(50);
+
+        return response($users);
+    }
+
+
+    /**
+     * all user with all role
+     * @return \Illuminate\Http\Response;
+    */
+    public function users_with_roles(){
+
+
+        $userRoles=User::with("roles")
+        ->orderBy("name","asc")
+        ->paginate(50);
+
+        return response($userRoles);
+    }
+
+
+    /**
+     * all user without any roles
+     * @return \Illuminate\Http\Response;
+    */
+    public function user_without_role(){
+        $users=User::doesntHave("roles")->oderBy("name","asc")->paginate(50);
+        return response($users);
     }
 
 
