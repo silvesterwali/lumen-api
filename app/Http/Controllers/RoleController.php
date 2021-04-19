@@ -74,9 +74,11 @@ class RoleController extends Controller
      * to assign user to role
      * user only have one role at moment but if you want more ? just do it by your self
      * @see https://spatie.be/docs/laravel-permission/v4/basic-usage/role-permissions
-     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $user_id
+     * @return \Illuminate\Http\Response
     */
-    public function assign_role_to_user(Request $request,$user_id){
+    public function assignRoleToUser(Request $request,$user_id){
 
         $this->validate($request,[
             "role"=>"required"
@@ -103,14 +105,16 @@ class RoleController extends Controller
     /**
      * remove a role from user 
      * - for more information please @see https://spatie.be/docs/laravel-permission/v4/basic-usage/role-permissions
+     * @param \Illuminate\Http\Request
+     * @param int $user_id
+     * @return \Illuminate\Http\Response
     */
-    public function remove_role_from_user(Request $request){
+    public function removeRoleFromUser(Request $request,$user_id){
         $this->validate($request,[
-            "user_id"=>"required",
             "role"=>"required|alpha_dash"
         ]);
 
-        $user=User::find($request->user_id);
+        $user=User::find($user_id);
 
         if(!$user){
             return response(["message"=>"User data not found"],Response::HTTP_NOT_FOUND);
@@ -127,8 +131,11 @@ class RoleController extends Controller
     /**
      * remove all user role adn assign new role
      * TODO :: does all the role_permission gone ?
+     * @param \Illuminate\Http\Request $request
+     * @param int $user_id
+     * @return \Illuminate\Http\Response
     */
-    public function sync_role_to_user(Request $request,$user_id){
+    public function syncRoleToUser(Request $request,$user_id){
         $this->validate($request,[
             "role"=>"required|alpha_dash",
         ]);
@@ -144,11 +151,14 @@ class RoleController extends Controller
         return response(["message"=>"Success to remove all old user role and async new role"]);
     }
 
+
+
     /**
-     * User with all user
-     * 
+     * User with all roles
+     * @param int $user_id
+     * @return \Illuminate\Http\Response
     */
-    public function user_all_roles($user_id){
+    public function userWithAllRoles($user_id){
 
         $user=User::find($user_id);
 
@@ -160,9 +170,11 @@ class RoleController extends Controller
 
     /**
      * get all user with same role
+     * @param string $role
      * @return \Illuminate\Http\Response;
+     * 
     */
-    public function user_with_same_role($role){
+    public function userWithSameRole($role){
 
         $users=User::role($role)->pagination(50);
 
@@ -174,7 +186,7 @@ class RoleController extends Controller
      * all user with all role
      * @return \Illuminate\Http\Response;
     */
-    public function users_with_roles(){
+    public function usersWithRoles(){
 
 
         $userRoles=User::with("roles")
@@ -189,7 +201,7 @@ class RoleController extends Controller
      * all user without any roles
      * @return \Illuminate\Http\Response;
     */
-    public function user_without_role(){
+    public function userWithoutRole(){
         $users=User::doesntHave("roles")->oderBy("name","asc")->paginate(50);
         return response($users);
     }

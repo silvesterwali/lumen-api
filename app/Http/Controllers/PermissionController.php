@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Contracts\Service\Attribute\Required;
+
 
 class PermissionController extends Controller
 {
