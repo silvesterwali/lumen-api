@@ -26,7 +26,14 @@ class UserSeeder extends Seeder
                 "email"=>"admin@gmail.com",
                 "password"=>app("hash")->make("supersecret"),
                 "verified_email"=>true
-            ]
+            ],
+            [
+                "name"=>"finance",
+                "email"=>"finance@gmail.com",
+                "password"=>app("hash")->make("supersecret"),
+                "verified_email"=>true
+            ],
+            
         ]);
     }
 }
