@@ -68,7 +68,7 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      * 
     */
-    public function  give_permissions_to_user(Request $request,$user_id){
+    public function  givePermissionsToUser(Request $request,$user_id){
         $this->validate($request,[
             "permissions"=>"required|array"
         ]);
@@ -95,7 +95,7 @@ class PermissionController extends Controller
      * @param int $user_id
      * @return \Illuminate\Http\Response
     */
-    public function revoke_permission_form_user(Request $request,$user_id){
+    public function revokePermissionFromUser(Request $request,$user_id){
         $this->validate($request,["permission"]);
 
         $user=User::find($user_id);
