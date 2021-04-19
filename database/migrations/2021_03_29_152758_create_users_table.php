@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string("email")->unique()->unique();
             $table->string("password");
             $table->string("photo_url")->nullable();
-            $table->smallInteger("role")->default(0);
             $table->boolean("verified_email")->default(false);
             $table->boolean("is_active")->default(true)->comment("check if the accound supended");
             $table->timestamps();
