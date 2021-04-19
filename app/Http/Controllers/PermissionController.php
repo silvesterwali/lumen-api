@@ -19,8 +19,6 @@ class PermissionController extends Controller
     public function index()
     {
         $permission=Permission::orderBy("name","asc")->paginate(50);
-
-
         return response($permission);
     }
 
@@ -65,6 +63,7 @@ class PermissionController extends Controller
     /**
      * give permissions to user
      * @param \Illuminate\Http\Request $request
+     * @param int $user_id
      * @return \Illuminate\Http\Response
      * 
     */
@@ -125,7 +124,7 @@ class PermissionController extends Controller
         return response($user);
     }
 
-    
+
 
     /**
      * get user with all permission 
@@ -149,7 +148,7 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      * 
     */
-    public function revokeAndNewPermissionToUser(Request $request,$user_id){
+    public function revokeAndCreateNewPermissionToUser(Request $request,$user_id){
 
 
         $this->validate($request,[
