@@ -6,6 +6,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -110,6 +111,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function removeRoleFromUser(Request $request,$user_id){
+
         $this->validate($request,[
             "role"=>"required|alpha_dash"
         ]);
@@ -136,6 +138,8 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function syncRoleToUser(Request $request,$user_id){
+
+
         $this->validate($request,[
             "role"=>"required|alpha_dash",
         ]);
@@ -195,6 +199,8 @@ class RoleController extends Controller
 
         return response($userRoles);
     }
+
+    
 
 
     /**
