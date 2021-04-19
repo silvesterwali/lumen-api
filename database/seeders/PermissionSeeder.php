@@ -13,10 +13,17 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create([
+        Permission::createMany([
+            [
             "name"=>"create-module",
             "name"=>"update-module",
             "name"=>"delete-module"
+        ],
+        [
+            "name"=>"create-news",
+            "name"=>"update-news",
+            "name"=>"delete-news"
+        ]
         ]);
     }
 }
