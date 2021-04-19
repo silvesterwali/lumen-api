@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::createMany([
+        User::insert([
             [
                 "name"=>"super-admin",
                 "email"=>"super-admin@gmail.com",

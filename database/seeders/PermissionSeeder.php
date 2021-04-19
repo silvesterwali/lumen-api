@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+
 class PermissionSeeder extends Seeder
 {
     /**
@@ -13,17 +14,24 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Permission::createMany([
+        Permission::insert([
             [
-            "name"=>"create-module",
-            "name"=>"update-module",
-            "name"=>"delete-module"
-        ],
-        [
-            "name"=>"create-news",
-            "name"=>"update-news",
-            "name"=>"delete-news"
-        ]
+                "name" => "create-module",
+
+            ], [
+                "name" => "update-module",
+
+            ],
+            ["name" => "delete-module"],
+            [
+                "name" => "create-news",
+
+            ], [
+                "name" => "update-news",
+
+            ], [
+                "name" => "delete-news",
+            ],
         ]);
     }
 }
