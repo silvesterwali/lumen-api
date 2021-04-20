@@ -16,6 +16,10 @@ The Lumen framework is open-sourced software licensed under the [MIT license](ht
 
 this app is for starter purpose . so you can easy to start your app with . this project has been include jwt and spatie permission , for more information about [Laravel](https://laravel.com) just go there to find all the documentation
 
+## Note
+
+This documentation does not use standard English, please be more careful and if you find writing errors, you can contribute to the repo
+
 
 ### first step
 
@@ -42,10 +46,10 @@ Some of the route has been create . those route are just for the basic needed an
 
 |URL|Method|Payload|Description|
 |:--|:-----|:------|:----------|
-|http://localhost:8000/api/register|POST|{name:"",email:"",password:"",password_confirm:""}| Register to app , will return token 
-|http://localhost:8000/api/login|POST|{email:"",password:""}|Login to app 
+|http://localhost:8000/api/register|POST|{name:"", email:"", password:"", password_confirm:""}| Register to app , will return token 
+|http://localhost:8000/api/login|POST|{email:"", password:""}|Login to app 
 |http://localhost:8000/api/roles|GET||Get all available roles with default paginate 50
-|http://localhost:8000/api/roles|POST|{name:"",guard_name:"",description:""}| create new role . make sure it lowercase and without space
+|http://localhost:8000/api/roles|POST|{name:"", guard_name:"", description:""}| create new role . make sure it lowercase and without space
 |http://localhost:8000/api/roles/assign_role_to_user/{user_id}|PUT|{role:""}| assign a role to user 
 |http://localhost:8000/api/roles/users_with_all_roles|GET||Get all user with all roles they have
 |http://localhost:8000/api/roles/user_without_roles|GET|| Get all user without any roles
