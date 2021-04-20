@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles=Role::oderBy("name","asc")
+        $roles=Role::orderBy("name","asc")
         ->paginate(50);
         return response($roles);
     
@@ -35,39 +35,17 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            "name"=>"required|array|alpha_dash|unique:roles,name"
+            "name"=>"required|unique:roles,name"
         ]);
 
         try{
-            Role::createMany($request->except("id"));
+            
+            Role::create($request->except("id"));
         }catch(Exception $e){
             return response($e->getMessage(),Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         return response(["message"=>"Success to create new role"]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request,["name"=>"required|alpha_dash"]);
     }
 
 
@@ -208,7 +186,7 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response;
     */
     public function userWithoutRole(){
-        $users=User::doesntHave("roles")->oderBy("name","asc")->paginate(50);
+        $users=User::doesntHave("roles")->orderBy("name","asc")->paginate(50);
         return response($users);
     }
 
@@ -221,6 +199,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        
+        $role=Role::findOrFail($id);
+        $role->delete();
+        return response(["message"=>"Success to remove role"]);
     }
 }
