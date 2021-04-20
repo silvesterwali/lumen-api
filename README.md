@@ -40,110 +40,20 @@ $ php artisan config:clear
 
 Some of the route has been create . those route are just for the basic needed and not the standard or not the best best way . you change them as you want 
 
-
-Register Route | POST
-
-```
-http://localhost:8000/api/register
-
-```
-
-Login Route | POST
-
-```
-http://localhost:8000/api/roles
-
-```
-
-Get all role  | GET
-
-all roles with laravel pagination default 50
+|URL|Method|Payload|Description|
+|:--|:-----|:------|:----------|
+|http://localhost:8000/api/register|POST|{name:"",email:"",password:"",password_confirm:""}| Register to app , will return token 
+|http://localhost:8000/api/login|POST|{email:"",password:""}|Login to app 
+|http://localhost:8000/api/roles|GET||Get all available roles with default paginate 50
+|http://localhost:8000/api/roles|POST|{name:"",guard_name:"",description:""}| create new role . make sure it lowercase and without space
+|http://localhost:8000/api/roles/assign_role_to_user/{user_id}|PUT|{role:""}| assign a role to user 
+|http://localhost:8000/api/roles/users_with_all_roles|GET||Get all user with all roles they have
+|http://localhost:8000/api/roles/user_without_roles|GET|| Get all user without any roles
+|http://localhost:8000/api/roles/user_with_same_role/{role}|GET|| Get all user with same role for example role admin . and as i mention before than create role without space  and lowercase ,it will help your here clean the route
+|http://localhost:8000/api/roles/users_with_all_roles|GET||Get all user with their roles
+|http://localhost:8000/api/roles/sync_role_to_user/{user_id}|PUT|{role:"new-role"}|Remove previous role and assign new role to user
+|http://localhost:8000/api/roles/remove_role_from_user/{user_id}|PUT|{role:"current-role"}| remove user role according role name
 
 
-```
-http://localhost:8000/api/roles
 
-```
-
-create new role | POST
-
-```
-http://localhost:8000/api/roles
-
-{
-    "name":"myRole",
-    "description:"my role is awesome",
-    "guard_name:""
-}
-```
-
-assign role to user | PUT
-you can assign role to user via user id
-
-```
-http://localhost:8000/api/roles/assign_role_to_user/{user_id}
-
-{
-    role:"my-role"
-}
-
-```
-
-All users with their roles | GET
-
-```
-http://localhost:8000/api/roles/users_with_all_roles
-
-```
-
-
-User without any role | GET
-
-```
-http://localhost:8000/api/roles/user_without_roles
-
-
-```
-
-
-User with same role | GET
-
-make sure your role name without space
-
-```
-http://localhost:8000/api/roles/user_with_same_role/{role}
-
-```
-
-
-All user with all roles they have
-
-```
-
-http://localhost:8000/api/roles/users_with_all_roles
-
-
-```
-
-Remove previous roles from user then create new | PUT
-
-```
-http://localhost:8000/api/roles/sync_role_to_user/{user_id}
-
-{
-    "role":"new-role"
-}
-
-```
-
-
-revoke role from user |PUT
-
-```
-http://localhost:8000/api/roles/remove_role_from_user/2
-
-{
-    "role":"current-role"
-}
-
-```
+if your have idea you can contribute ,there no roles for that ,help other like help your self
