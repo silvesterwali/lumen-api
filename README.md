@@ -89,6 +89,61 @@ http://localhost:8000/api/roles/assign_role_to_user/{user_id}
 
 ```
 
+All users with their roles | GET
+
+```
+http://localhost:8000/api/roles/users_with_all_roles
+
+```
 
 
+User without any role | GET
 
+```
+http://localhost:8000/api/roles/user_without_roles
+
+
+```
+
+
+User with same role | GET
+
+make sure your role name without space
+
+```
+http://localhost:8000/api/roles/user_with_same_role/{role}
+
+```
+
+
+All user with all roles they have
+
+```
+
+http://localhost:8000/api/roles/users_with_all_roles
+
+
+```
+
+Remove previous roles from user then create new | PUT
+
+```
+http://localhost:8000/api/roles/sync_role_to_user/{user_id}
+
+{
+    "role":"new-role"
+}
+
+```
+
+
+revoke role from user |PUT
+
+```
+http://localhost:8000/api/roles/remove_role_from_user/2
+
+{
+    "role":"current-role"
+}
+
+```

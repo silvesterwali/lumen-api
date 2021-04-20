@@ -43,11 +43,10 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->get("/","RoleController@index");
         $router->post("/","RoleController@store");
         $router->put("/assign_role_to_user/{user_id}","RoleController@assignRoleToUser");
-        $router->put("/remove_role_from_user","RoleController@removeRoleFromUser");
-        $router->put("/sync_role_to_user","RoleController@syncRoleToUser");
-        $router->get("/user_with_all_roles","RoleController@userWithRoles");
+        $router->put("/remove_role_from_user/{user_id}","RoleController@removeRoleFromUser");
+        $router->put("/sync_role_to_user/{user_id}","RoleController@syncRoleToUser");
+        $router->get("/users_with_all_roles","RoleController@usersWithRoles");
         $router->get("/user_with_same_role/{role}","RoleController@userWithSameRole");
-        $router->get("/user_with_roles","RoleController@userWithRoles");
         $router->get("/user_without_roles","RoleController@userWithoutRole");
 
     });
