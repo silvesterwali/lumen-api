@@ -23,6 +23,8 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
         'name', 'email',
     ];
 
+    protected $guard_name="api";
+
     /**
      * The attributes excluded from the model's JSON form.
      *

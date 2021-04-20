@@ -17,20 +17,26 @@ class PermissionSeeder extends Seeder
         Permission::insert([
             [
                 "name" => "create-module",
+                "guard_name"=>"api"
 
             ], [
                 "name" => "update-module",
-
+                "guard_name"=>"api"
             ],
-            ["name" => "delete-module"],
+            ["name" => "delete-module",   "guard_name"=>"api"],
             [
                 "name" => "create-news",
+                "guard_name"=>"api"
 
-            ], [
+            ],
+            [
                 "name" => "update-news",
+                "guard_name"=>"api"
 
-            ], [
+            ], 
+            [
                 "name" => "delete-news",
+                "guard_name"=>"api"
             ],
         ]);
     }

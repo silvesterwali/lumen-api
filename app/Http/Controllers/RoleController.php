@@ -65,14 +65,14 @@ class RoleController extends Controller
 
         // todo :check the user if already have the role
 
-        $user=User::find($user_id);
+        $user=User::findOrFail($user_id);
 
         if(!$user){
             // prevent if user not exists
             return response(["message"=>"User data not found"],Response::HTTP_NOT_FOUND);
         }
 
-        $user->assignRole($request->roles);
+        $user->assignRole($request->role);
 
 
         return response(["message"=>"Success to async roles to user"]);
@@ -91,7 +91,7 @@ class RoleController extends Controller
     public function removeRoleFromUser(Request $request,$user_id){
 
         $this->validate($request,[
-            "role"=>"required|alpha_dash"
+            "role"=>"required"
         ]);
 
         $user=User::find($user_id);
@@ -128,7 +128,7 @@ class RoleController extends Controller
             return response(["message"=>"User data not found"],Response::HTTP_NOT_FOUND);
         }
 
-        $user->syncRoles($request->role);
+        $user->syncRoles($request->only("role"));
 
         return response(["message"=>"Success to remove all old user role and async new role"]);
     }
@@ -158,7 +158,7 @@ class RoleController extends Controller
     */
     public function userWithSameRole($role){
 
-        $users=User::role($role)->pagination(50);
+        $users=User::role($role)->paginate(50);
 
         return response($users);
     }
@@ -172,6 +172,7 @@ class RoleController extends Controller
 
 
         $userRoles=User::with("roles")
+        ->whereHas("roles")
         ->orderBy("name","asc")
         ->paginate(50);
 
