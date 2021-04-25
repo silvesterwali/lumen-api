@@ -43,4 +43,15 @@ class UserPermissionController extends Controller
         return response(["message" => "success to revoke a permission from a user"]);
     }
 
+    /**
+     * get users with a permission
+     * @param string $permission
+     * @return \Illuminate\Http\Response
+     */
+    public function usersWithPermission($permission)
+    {
+        $users = User::permission($permission)->paginate(50);
+        return response($users);
+    }
+
 }

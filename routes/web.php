@@ -50,11 +50,13 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
 
     $router->group(["prefix" => "user_permission"], function () use ($router) {
+        $router->get("/permission/{permission}", "UserPermissionController@usersWithPermission");
         $router->post("/give_permission_to", "UserPermissionController@userGivePermissionTo");
         $router->post("/revoke_permission_to", "UserPermissionController@userRevokePermissionTo");
     });
 
     $router->group(["prefix" => "user_role"], function () use ($router) {
+        $router->get("/role/{role}", "UserRoleController@usersWithRole");
         $router->post("/assign_role", "UserRoleController@userAssignRole");
         $router->post("/remove_role_as", "UserRoleController@userRemoveRoleAs");
     });
