@@ -67,4 +67,16 @@ class UserRoleController extends Controller
 
         return response($users);
     }
+
+    /**
+     * get users with any roles
+     * @return \Illuminate\Http\Response
+     */
+    public function usersWithRoles()
+    {
+        $users = User::with("roles")
+            ->whereHas("roles")
+            ->paginate(50);
+        return response($users);
+    }
 }
