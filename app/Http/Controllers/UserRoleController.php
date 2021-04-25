@@ -44,4 +44,16 @@ class UserRoleController extends Controller
 
         return response(["message" => "Success to remove role from user"]);
     }
+
+    /**
+     * get users with a role
+     * @param string $role
+     * @return \Illuminate\Http\Response
+     */
+    public function usersWithRole($role)
+    {
+        $users = User::role($role)->paginate(50);
+
+        return response($users);
+    }
 }
