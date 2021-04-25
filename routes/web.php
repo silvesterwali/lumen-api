@@ -37,36 +37,12 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
     // end of user basic
 
-
-    $router->group(["prefix"=>"roles"], function() use ($router){
-
-        $router->get("/","RoleController@index");
-        $router->post("/","RoleController@store");
-        $router->put("/assign_role_to_user/{user_id}","RoleController@assignRoleToUser");
-        $router->put("/remove_role_from_user/{user_id}","RoleController@removeRoleFromUser");
-        $router->put("/sync_role_to_user/{user_id}","RoleController@syncRoleToUser");
-        $router->get("/users_with_all_roles","RoleController@usersWithRoles");
-        $router->get("/user_with_same_role/{role}","RoleController@userWithSameRole");
-        $router->get("/user_without_roles","RoleController@userWithoutRole");
+    $router->group(["prefix" => "roles"], function () use ($router) {
+        $router->get("/", "RoleController@index");
+        $router->post("/", "RoleController@store");
+        $router->delete("/{id}", "RoleController@destroy");
 
     });
-
-
-    $router->group(["prefix"=>"permissions"],function() use($router){
-        $router->get("/","PermissionController@index");
-        $router->post("/","PermissionController@store");
-        $router->put("/give_permissions_to_user/{user_id}","PermissionController@givePermissionsToUser");
-        $router->put("/revoke_permission_from_user/{user_id}","PermissionController@revokePermissionFromUser");
-        $router->get("/get_user_permission_via_role/{user_id}","PermissionController@getUserPermissionViaRole");
-        $router->get("/get_user_with_all_permission/{user_id}","PermissionController@getUserWithAllPermission");
-        $router->put("/revoke_and_create_new_permission_to_user/{user_id}","PermissionController@revokeAndCreateNewPermissionToUser");
-    });
-
-  
-
-
-
-
 
     // route for module
     $router->post("module", "ModuleController@store");
