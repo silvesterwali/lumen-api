@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserPermission extends Controller
+class UserPermissionController extends Controller
 {
     /**
      * give permissions to a user
