@@ -37,11 +37,16 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
     // end of user basic
 
-    $router->group(["prefix" => "roles"], function () use ($router) {
+    $router->group(["prefix" => "role"], function () use ($router) {
         $router->get("/", "RoleController@index");
         $router->post("/", "RoleController@store");
         $router->delete("/{id}", "RoleController@destroy");
+    });
 
+    $router->group(["prefix" => "permission"], function () use ($router) {
+        $router->get("/", "PermissionController@index");
+        $router->post("/", "PermissionController@store");
+        $router->delete("/{id}", "PermissionController@destroy");
     });
 
     // route for module

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,110 +35,6 @@ class PermissionController extends Controller
     }
 
     /**
-     * give permissions to user
-     * @param \Illuminate\Http\Request $request
-     * @param int $user_id
-     * @return \Illuminate\Http\Response
-     *
-     */
-    public function givePermissionsToUser(Request $request, $user_id)
-    {
-        $this->validate($request, [
-            "permissions" => "required|array",
-        ]);
-
-        $user = User::find($user_id);
-
-        if (!$user) {
-            return response(["User data not found"], Response::HTTP_NOT_FOUND);
-        }
-
-        $user->givePermissionTo($request->except("id"));
-
-        return response(["message" => "Success give permission to user"]);
-
-    }
-
-    /**
-     * revoke a permission from user
-     * @param \Illuminate\Http\Request $request
-     * @param int $user_id
-     * @return \Illuminate\Http\Response
-     */
-    public function revokePermissionFromUser(Request $request, $user_id)
-    {
-        $this->validate($request, ["permission"]);
-
-        $user = User::find($user_id);
-
-        if (!$user) {
-            return response(["message" => "User data not found"], Response::HTTP_NOT_FOUND);
-        }
-
-        $user->revokePermissionTo($request->except("id"));
-
-        return response(["message" => "Success revoke user permission"]);
-    }
-
-    /**
-     * get user permission via role
-     * @param int $user_id
-     *
-     */
-    public function getUserPermissionViaRole($user_id)
-    {
-
-        $user = User::find($user_id);
-
-        $user->getPermissionsViaRoles();
-
-        return response($user);
-    }
-
-    /**
-     * get user with all permission
-     * @param int $user_id
-     */
-    public function getUserWithAllPermission($user_id)
-    {
-
-        $user = User::find($user_id);
-
-        $user->getAllPermissions();
-
-        return response($user);
-
-    }
-
-    /**
-     * revoke a permission from user and create new one permission
-     * @param \Illuminate\Http\Request $request;
-     * @param int $user_id
-     * @return \Illuminate\Http\Response
-     *
-     */
-    public function revokeAndCreateNewPermissionToUser(Request $request, $user_id)
-    {
-
-        $this->validate($request, [
-            "revoked_permission" => "required|alpha_dash",
-            "permission" => "required|alpha_dash",
-        ]);
-
-        $user = User::find($user_id);
-
-        if (!$user) {
-
-            return response(["message" => "User data not found"], Response::HTTP_NOT_FOUND);
-        }
-
-        $user->syncPermissions([$request->permission, $request->revoked_permission]);
-
-        return response(["message" => "Success to revoke permission from user and create another"]);
-
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -147,6 +42,7 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Permission::findOrFail($id)->delete();
+        return response(["message" => "Success to remove permission"]);
     }
 }
