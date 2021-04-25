@@ -56,4 +56,15 @@ class UserRoleController extends Controller
 
         return response($users);
     }
+
+    /**
+     * get users with any role
+     * @return \Illuminate\Http\Response
+     */
+    public function usersWithoutRole()
+    {
+        $users = User::doesntHave("roles")->paginate(50);
+
+        return response($users);
+    }
 }
