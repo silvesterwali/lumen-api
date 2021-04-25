@@ -49,6 +49,11 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->delete("/{id}", "PermissionControllerController@destroy");
     });
 
+    $router->group(["prefix" => "user_permission"], function () use ($router) {
+        $router->post("/give_permission_to", "UserPermissionController@userGivePermissionTo");
+        $router->post("/revoke_permission_to", "UserPermissionController@userRevokePermissionTo");
+    });
+
     // route for module
     $router->post("module", "ModuleController@store");
     // end of route module
