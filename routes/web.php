@@ -58,6 +58,7 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     $router->group(["prefix" => "user_role"], function () use ($router) {
         $router->get("/role/{role}", "UserRoleController@usersWithRole");
         $router->get("/user_without_role", "UserRoleController@usersWithoutRole");
+        $router->get("/user_with_role", "UserRoleController@usersWithRoles");
         $router->post("/assign_role", "UserRoleController@userAssignRole");
         $router->post("/remove_role_as", "UserRoleController@userRemoveRoleAs");
 
