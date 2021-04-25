@@ -15,22 +15,21 @@ class UserRoleToPermissionController extends Controller
      */
     public function userRoleGivePermissionTo(Request $request)
     {
+
         $this->validate($request, [
             "role" => "required",
             "permission" => "required",
         ]);
 
-        $users = User::permission($request->role)
-            ->pluck("id")
-            ->toArray();
+        $users = User::role($request->role)->get();
 
         if (!$users) {
             return response(["message" => "User with given role not found"], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        foreach ($users as $userId) {
+        foreach ($users as $user) {
 
-            $currentUser = User::find($userId);
+            $currentUser = User::find($user->id);
             $currentUser->givePermissionTo($request->permission);
         }
 
@@ -49,17 +48,16 @@ class UserRoleToPermissionController extends Controller
             "permission" => "required",
         ]);
 
-        $users = User::permission($request->role)
-            ->pluck("id")
-            ->toArray();
+        $users = User::role($request->role)
+            ->get();
 
         if (!$users) {
             return response(["message" => "User with given role not found"], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        foreach ($users as $userId) {
+        foreach ($users as $user) {
 
-            $currentUser = User::find($userId);
+            $currentUser = User::find($user->id);
             $currentUser->revokePermissionTo($request->permission);
         }
 
