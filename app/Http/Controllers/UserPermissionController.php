@@ -40,7 +40,7 @@ class UserPermissionController extends Controller
         $user = User::findOrFail($$request->user_id);
         $user->revokePermissionTo($request->permission);
 
-        return response(["success to revoke a permission from a ser"]);
+        return response(["message" => "success to revoke a permission from a ser"]);
     }
 
 }
