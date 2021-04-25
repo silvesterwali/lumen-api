@@ -54,4 +54,17 @@ class UserPermissionController extends Controller
         return response($users);
     }
 
+    /**
+     * get users with any permission
+     * @return \Illuminate\Http\Response
+     *
+     */
+    public function usersWithPermissions()
+    {
+        $users = User::with('permissions')
+            ->whereHas('permissions')
+            ->paginate(50);
+        return response($users);
+    }
+
 }
