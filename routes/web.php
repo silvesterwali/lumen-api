@@ -54,6 +54,11 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->post("/revoke_permission_to", "UserPermissionController@userRevokePermissionTo");
     });
 
+    $router->group(["prefix" => "user_role"], function () use ($router) {
+        $router->post("/assign_role", "UserRoleController@userAssignRole");
+        $router->post("/remove_role_as", "UserRoleController@userRemoveRoleAs");
+    });
+
     // route for module
     $router->post("module", "ModuleController@store");
     // end of route module
