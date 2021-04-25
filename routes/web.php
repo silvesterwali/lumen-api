@@ -52,8 +52,8 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     $router->group(["prefix" => "user_permission"], function () use ($router) {
         $router->get("/", "UserPermissionController@usersWithPermissions");
         $router->get("/permission/{permission}", "UserPermissionController@usersWithPermission");
-        $router->post("/give_permission_to", "UserPermissionController@userGivePermissionTo");
-        $router->post("/revoke_permission_to", "UserPermissionController@userRevokePermissionTo");
+        $router->post("/give_permission", "UserPermissionController@userGivePermissionTo");
+        $router->post("/revoke_permission", "UserPermissionController@userRevokePermissionTo");
     });
 
     $router->group(["prefix" => "user_role"], function () use ($router) {
@@ -63,6 +63,11 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->post("/assign_role", "UserRoleController@userAssignRole");
         $router->post("/remove_role_as", "UserRoleController@userRemoveRoleAs");
 
+    });
+
+    $router->group(["prefix" => "user_via_role"], function () use ($router) {
+        $router->post("/give_permission", "UserRoleToPermissionController@userRoleGivePermissionTo");
+        $router->post("/revoke_permission", "UserRoleToPermissionController@userRoleRevokePermissionTo");
     });
 
     // route for module
