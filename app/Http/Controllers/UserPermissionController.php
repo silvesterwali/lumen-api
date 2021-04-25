@@ -12,7 +12,7 @@ class UserPermissionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function UserGivePermissionTo(Request $request)
+    public function userGivePermissionTo(Request $request)
     {
         $this->validate($request, [
             "user_id" => "required",
@@ -30,7 +30,7 @@ class UserPermissionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function UserRevokePermissionTo(Request $request)
+    public function userRevokePermissionTo(Request $request)
     {
         $this->validate($request, [
             "user_id" => "required",
