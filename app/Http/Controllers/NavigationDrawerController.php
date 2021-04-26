@@ -14,17 +14,9 @@ class NavigationDrawerController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $navigationDrawers = NavigationDrawer::orderBy('name', "asc")
+            ->paginate(50);
+        return response($navigationDrawers);
     }
 
     /**
@@ -35,7 +27,12 @@ class NavigationDrawerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "name" => "required|unique:navigation_drawers,name",
+            "path_name" => "required|unique:navigation_drawers,path_name",
+            "icon" => "string",
+            "description" => "string",
+        ]);
     }
 
     /**
