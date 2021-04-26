@@ -29,11 +29,9 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
 
     // route for user basic
     $router->group(["prefix" => "auth"], function () use ($router) {
-
         $router->post("logout", "AuthController@logout");
         $router->get("refresh", "AuthController@refresh");
         $router->get("me", "AuthController@me");
-
     });
     // end of user basic
 
@@ -68,6 +66,13 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     $router->group(["prefix" => "user_via_role"], function () use ($router) {
         $router->post("/give_permission", "UserRoleToPermissionController@userRoleGivePermissionTo");
         $router->post("/revoke_permission", "UserRoleToPermissionController@userRoleRevokePermissionTo");
+    });
+
+    $router->group(["prefix" => "navigation_drawer"], function () use ($router) {
+        $router->get("/", "NavigationDrawerController@index");
+        $router->post("/", "NavigationDrawerController@store");
+        $router->put("/{navigation_drawer}", "NavigationDrawerController@update");
+        $router->get("/{navigation_drawer}", "NavigationDrawerController@delete");
     });
 
     // route for module
