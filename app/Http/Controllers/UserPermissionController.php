@@ -15,7 +15,7 @@ class UserPermissionController extends Controller
     public function userGivePermissionTo(Request $request)
     {
         $this->validate($request, [
-            "user_id" => "required",
+            "user_id"    => "required",
             "permission" => "required",
         ]);
 
@@ -33,7 +33,7 @@ class UserPermissionController extends Controller
     public function userRevokePermissionTo(Request $request)
     {
         $this->validate($request, [
-            "user_id" => "required",
+            "user_id"    => "required",
             "permission" => "required",
         ]);
 

@@ -16,7 +16,7 @@ class UserRoleController extends Controller
     {
         $this->validate($request, [
             "user_id" => "required",
-            "role" => "required",
+            "role"    => "required",
         ]);
 
         $user = User::findOrFail($request->user_id);
@@ -36,7 +36,7 @@ class UserRoleController extends Controller
     {
         $this->validate($request, [
             "user_id" => "required",
-            "role" => "required",
+            "role"    => "required",
         ]);
 
         $user = User::findOrFail($request->user_id);

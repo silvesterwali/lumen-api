@@ -17,7 +17,7 @@ class UserRoleToPermissionController extends Controller
     {
 
         $this->validate($request, [
-            "role" => "required",
+            "role"       => "required",
             "permission" => "required",
         ]);
 
@@ -44,7 +44,7 @@ class UserRoleToPermissionController extends Controller
     public function userRoleRevokePermissionTo(Request $request)
     {
         $this->validate($request, [
-            "role" => "required",
+            "role"       => "required",
             "permission" => "required",
         ]);
 
