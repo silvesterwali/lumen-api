@@ -19,7 +19,7 @@ class CreateNavigationDrawersTable extends Migration
             $table->string('path_name')->comment("apply for base directory example: /dashboard");
             $table->string('icon')->nullable()->comment('if navigation drawer on front end apply icon');
             $table->string('description')->nullable();
-            $table->smallInteger("level")->comment('will default create it');
+            $table->smallInteger("level")->default(0)->comment('will default create it');
             $table->timestamps();
         });
     }
