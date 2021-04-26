@@ -1,9 +1,9 @@
 <?php
-namespace Services;
+namespace App\Services;
 
 use App\Models\NavigationDrawer;
 
-class NavigationDrawerService
+class NavigationDrawerServices
 {
     /**
      * get max level from navigation drawer table

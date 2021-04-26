@@ -71,11 +71,9 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     $router->group(["prefix" => "navigation_drawer"], function () use ($router) {
         $router->get("/", "NavigationDrawerController@index");
         $router->post("/", "NavigationDrawerController@store");
-        $router->put("/{navigation_drawer}", "NavigationDrawerController@update");
-        $router->get("/{navigation_drawer}", "NavigationDrawerController@delete");
+        $router->get("/{id}", "NavigationDrawerController@show");
+        $router->put("/{id}", "NavigationDrawerController@update");
+        $router->delete("/{id}", "NavigationDrawerController@destroy");
     });
 
-    // route for module
-    $router->post("module", "ModuleController@store");
-    // end of route module
 });

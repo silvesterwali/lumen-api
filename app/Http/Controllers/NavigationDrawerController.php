@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\NavigationDrawer;
+use App\Services\NavigationDrawerServices;
 use Illuminate\Http\Request;
-use Services\NavigationDrawerService;
 
 class NavigationDrawerController extends Controller
 {
@@ -24,19 +24,20 @@ class NavigationDrawerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param App\Services\NavigationDrawerServices $navService
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, NavigationDrawerService $navService)
+    public function store(Request $request, NavigationDrawerServices $navService)
     {
         $this->validate($request, [
-            "name" => "required|unique:navigation_drawers,name",
-            "path_name" => "required|unique:navigation_drawers,path_name",
-            "icon" => "string",
+            "name"        => "required|unique:navigation_drawers,name",
+            "path_name"   => "required|string",
+            "icon"        => "string",
             "description" => "string",
         ]);
 
-        $request->level = $navService->lastMaxLevel();
-        NavigationDrawer::create($request);
+        $request->request->add(["level" => $navService->lastMaxLevel()]);
+        NavigationDrawer::create($request->except("id"));
         return response(["message" => "Success to add new navigation drawer"]);
 
     }
@@ -44,32 +45,35 @@ class NavigationDrawerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NavigationDrawer  $navigationDrawer
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(NavigationDrawer $navigationDrawer)
+    public function show($id)
     {
+        $navigationDrawer = NavigationDrawer::find($id);
         return response($navigationDrawer);
     }
 
     /**
      * Update the specified resource in storage.
      * note : level cannot update here
-     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @param  \App\Models\NavigationDrawer  $navigationDrawer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NavigationDrawer $navigationDrawer)
+    public function update(Request $request, $id)
     {
+
         $this->validate($request, [
-            "name" => "required|unique:navigation_drawers,name," . $navigationDrawer->id,
-            "path_name" => "required|unique:navigation_drawers,path_name," . $navigationDrawer->id,
-            "level" => "required|unique:level,path_name," . $navigationDrawer->id,
-            "icon" => "string",
+            "name"        => "required|unique:navigation_drawers,name," . $id,
+            "path_name"   => "required|string",
+            "icon"        => "string",
             "description" => "string",
         ]);
 
-        $navigationDrawer->update($request->except("id"));
+        NavigationDrawer::findOrFail($id)
+            ->update($request->except(["id", "level"]));
+
         return response(["message" => "Success to update navigation drawer"]);
 
     }
@@ -77,12 +81,13 @@ class NavigationDrawerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\NavigationDrawer  $navigationDrawer
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NavigationDrawer $navigationDrawer)
+    public function destroy($id)
     {
-        $navigationDrawer->delete();
+        NavigationDrawer::findOrFail($id)
+            ->delete();
         return response(["message" => "Success to delete navigation drawer"]);
     }
 }
