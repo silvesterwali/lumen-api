@@ -13,4 +13,15 @@ class NavigationDrawerChild extends Model
     {
         return $this->belongsTo(NavigationDrawer::class, "id");
     }
+
+    public function userNavigationItems()
+    {
+        return $this->hasMany(UserNavigationItem::class, "navigation_drawer_child_id");
+    }
+
+    public function userNavigationItemsUser($user_id)
+    {
+        return $this->hasMany(UserNavigationItem::class, "navigation_drawer_child_id")->where("user_id", $user_id);
+    }
+
 }

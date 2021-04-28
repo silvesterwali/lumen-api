@@ -12,4 +12,5 @@ class NavigationDrawer extends Model
     {
         return $this->hasMany(NavigationDrawerChild::class, "navigation_drawer_id");
     }
+
 }
