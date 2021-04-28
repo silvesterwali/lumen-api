@@ -76,4 +76,12 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->delete("/{id}", "NavigationDrawerController@destroy");
     });
 
+    $router->group(["prefix" => "navigation_drawer_child"], function () use ($router) {
+        $router->get("/", "NavigationDrawerChildController@index");
+        $router->post("/", "NavigationDrawerChildController@store");
+        $router->get("/{id}", "NavigationDrawerChildController@show");
+        $router->put("/{id}", "NavigationDrawerChildController@update");
+        $router->delete("/{id}", "NavigationDrawerChildController@destroy");
+    });
+
 });
