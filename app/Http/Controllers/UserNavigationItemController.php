@@ -2,84 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserNavigationItem;
-use Illuminate\Http\Request;
+use App\Models\NavigationDrawer;
 
 class UserNavigationItemController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * get all user navigation items
+     * @param int $user_id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke($user_id)
     {
-        //
-    }
+        $userNavItem = NavigationDrawer::whereHas('navigation_drawer_child', function ($q) use ($user_id) {
+            $q->whereHas(
+                'userNavigationItems', function ($q2) use ($user_id) {
+                    $q2->where('user_id', $user_id);
+                },
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+            );
+        })->with('navigation_drawer_child')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\UserNavigationItem  $userNavigationItem
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserNavigationItem $userNavigationItem)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\UserNavigationItem  $userNavigationItem
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UserNavigationItem $userNavigationItem)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserNavigationItem  $userNavigationItem
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UserNavigationItem $userNavigationItem)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\UserNavigationItem  $userNavigationItem
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(UserNavigationItem $userNavigationItem)
-    {
-        //
+        return response($userNavItem);
     }
 }

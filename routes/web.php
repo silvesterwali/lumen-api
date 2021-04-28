@@ -84,4 +84,6 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->delete("/{id}", "NavigationDrawerChildController@destroy");
     });
 
+    $router->get("user_navigation_items/{user_id}", "UserNavigationItemController");
+
 });
