@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserNavigationItem;
 use Illuminate\Http\Request;
 
-class UserNavigation extends Controller
+class UserNavigationController extends Controller
 {
     /**
      * give a user a navigation
@@ -42,14 +42,5 @@ class UserNavigation extends Controller
 
         return response(['message' => "Successfully revoked user navigation"]);
     }
-    /**
-     * revoke user navigation item via id
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        UserNavigationItem::findOrFail($id)->delete();
-        return response(["message" => "Successfully revoked user navigation"]);
-    }
+
 }

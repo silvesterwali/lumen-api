@@ -16,10 +16,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// route for basic authentication
 $router->group(['prefix' => 'api'], function () use ($router) {
-    // Matches "/api/register
     $router->post('register', 'AuthController@register');
-    // Matches "/api/login
     $router->post('login', 'AuthController@login');
 });
 
@@ -33,14 +33,15 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->get("refresh", "AuthController@refresh");
         $router->get("me", "AuthController@me");
     });
-    // end of user basic
 
+    // resource role
     $router->group(["prefix" => "role"], function () use ($router) {
         $router->get("/", "RoleController@index");
         $router->post("/", "RoleController@store");
         $router->delete("/{id}", "RoleController@destroy");
     });
 
+    // resource permission
     $router->group(["prefix" => "permission"], function () use ($router) {
         $router->get("/", "PermissionController@index");
         $router->post("/", "PermissionController@store");
@@ -63,11 +64,13 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
 
     });
 
+    //  give and revoke a user's permission
     $router->group(["prefix" => "user_via_role"], function () use ($router) {
         $router->post("/give_permission", "UserRoleToPermissionController@userRoleGivePermissionTo");
         $router->post("/revoke_permission", "UserRoleToPermissionController@userRoleRevokePermissionTo");
     });
 
+    // resource navigation drawer
     $router->group(["prefix" => "navigation_drawer"], function () use ($router) {
         $router->get("/", "NavigationDrawerController@index");
         $router->post("/", "NavigationDrawerController@store");
@@ -76,6 +79,7 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->delete("/{id}", "NavigationDrawerController@destroy");
     });
 
+    // resource navigation drawer child
     $router->group(["prefix" => "navigation_drawer_child"], function () use ($router) {
         $router->get("/", "NavigationDrawerChildController@index");
         $router->post("/", "NavigationDrawerChildController@store");
@@ -84,6 +88,13 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->delete("/{id}", "NavigationDrawerChildController@destroy");
     });
 
+    // all navigation assigned to a user
     $router->get("user_navigation_items/{user_id}", "UserNavigationItemController");
+
+    // give and revoke a user's navigation
+    $router->group(["prefix" => "user_navigation"], function () use ($router) {
+        $router->post("/give_navigation", "UserNavigationController@giveNavigationToUser");
+        $router->post("/revoke_navigation", "UserNavigationController@revokeNavigationFromUser");
+    });
 
 });
