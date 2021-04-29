@@ -80,7 +80,7 @@ class NavigationAccordingRoleController extends Controller
 
         $users->map(function ($user) use ($request) {
 
-            UserNavigationItem::where("user_id", $user->user_id)
+            UserNavigationItem::where("user_id", $user->id)
                 ->where("navigation_drawer_child_id", $request->navigation_drawer_child_id)
                 ->delete();
         });
