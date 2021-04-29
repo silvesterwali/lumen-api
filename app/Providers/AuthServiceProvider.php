@@ -2,9 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Module;
-use App\Models\User;
-use App\Policies\ModulePolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -50,11 +47,6 @@ class AuthServiceProvider extends ServiceProvider
     }
     public function registerGate()
     {
-        Gate::policy(Module::class, ModulePolicy::class);
-
-        Gate::define('create-module', function ($user) {
-            return $user->isAdmin();
-        });
 
     }
 
