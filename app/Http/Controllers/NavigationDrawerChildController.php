@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\NavigationDrawerChild;
-use App\Services\NavigationDrawerChildServices;
 use Illuminate\Http\Request;
 
 class NavigationDrawerChildController extends Controller
@@ -25,10 +24,9 @@ class NavigationDrawerChildController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param App\Services\NavigationDrawerChildService $navChild
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, NavigationDrawerChildServices $navChild)
+    public function store(Request $request)
     {
         $this->validate($request, [
             "navigation_drawer_id" => "required",
@@ -37,15 +35,8 @@ class NavigationDrawerChildController extends Controller
             "icon"                 => "string",
             "description"          => "string",
         ]);
-        $currentLevel = $navChild->maxLevel($request->navigation_drawer_id);
 
-        if (!$request->has("level")) {
-            $request->request->add(["level" => $currentLevel]);
-        } else {
-            $request->level = $currentLevel;
-        }
-
-        NavigationDrawerChild::create($request->all());
+        NavigationDrawerChild::create($request->only(["navigation_drawer_id", "name", "path_name", "icon", "description"]));
 
         return response(["message" => "Success to add navigation drawer child"]);
 
