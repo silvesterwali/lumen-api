@@ -18,16 +18,16 @@ class NavigationSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 10) as $index) {
+        foreach (["home", "dashboard", "profile", "user"] as $index) {
             $navDrawer = NavigationDrawer::create([
-                "name"        => "/" . $faker->company(),
-                "path_name"   => "/" . $faker->creditCardType(),
+                "name"        => "/" . $index,
+                "path_name"   => "/" . $index,
                 "description" => $faker->catchPhrase(),
             ]);
             foreach (["edit", "update", "create", "delete"] as $value) {
                 NavigationDrawerChild::create([
                     "navigation_drawer_id" => $navDrawer->id,
-                    "name"                 => $faker->name(),
+                    "name"                 => $index . " " . $value,
                     "path_name"            => "/" . $value,
                     "description"          => $faker->catchPhrase(),
                 ]);
