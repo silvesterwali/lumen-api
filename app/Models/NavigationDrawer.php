@@ -13,4 +13,14 @@ class NavigationDrawer extends Model
         return $this->hasMany(NavigationDrawerChild::class, "navigation_drawer_id");
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        NavigationDrawer::creating(function ($model) {
+            $model->level = NavigationDrawer::max('level') + 1;
+        });
+
+    }
+
 }

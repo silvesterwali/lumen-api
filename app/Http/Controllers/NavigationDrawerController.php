@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\NavigationDrawer;
-use App\Services\NavigationDrawerServices;
 use Illuminate\Http\Request;
 
 class NavigationDrawerController extends Controller
@@ -22,12 +21,11 @@ class NavigationDrawerController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * the level is generate automatically on model boot
      * @param  \Illuminate\Http\Request  $request
-     * @param App\Services\NavigationDrawerServices $navService
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, NavigationDrawerServices $navService)
+    public function store(Request $request)
     {
         $this->validate($request, [
             "name"        => "required|unique:navigation_drawers,name",
@@ -35,9 +33,7 @@ class NavigationDrawerController extends Controller
             "icon"        => "string",
             "description" => "string",
         ]);
-
-        $request->request->add(["level" => $navService->lastMaxLevel()]);
-        NavigationDrawer::create($request->except("id"));
+        NavigationDrawer::create($request->only(["name", "path_name", "icon", "description"]));
         return response(["message" => "Success to add new navigation drawer"]);
 
     }
