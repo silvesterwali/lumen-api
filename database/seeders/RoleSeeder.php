@@ -16,22 +16,13 @@ class RoleSeeder extends Seeder
     {
         Role::insert([
             [
-                "name" => "super-admin",
+                "name"       => "Super Admin",
                 "guard_name" => "api",
 
             ],
             [
-                "name" => "admin",
+                "name"       => "Admin",
                 "guard_name" => "api",
-            ],
-            [
-                "name" => "sales",
-                "guard_name" => "api",
-
-            ],
-            [
-                "name" => "client",
-                "guard_name" => "api"
             ],
         ]);
     }

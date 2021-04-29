@@ -16,27 +16,56 @@ class PermissionSeeder extends Seeder
     {
         Permission::insert([
             [
-                "name" => "create-module",
-                "guard_name"=>"api"
-
-            ], [
-                "name" => "update-module",
-                "guard_name"=>"api"
-            ],
-            ["name" => "delete-module",   "guard_name"=>"api"],
-            [
-                "name" => "create-news",
-                "guard_name"=>"api"
-
+                "name"       => "create-role",
+                "guard_name" => "api",
             ],
             [
-                "name" => "update-news",
-                "guard_name"=>"api"
-
-            ], 
+                "name"       => "edit-role",
+                "guard_name" => "api",
+            ],
             [
-                "name" => "delete-news",
-                "guard_name"=>"api"
+                "name"       => "delete-role",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "create-navigation-drawer",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "edit-navigation-drawer",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "delete-navigation-drawer",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "create-navigation-drawer-child",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "edit-navigation-drawer-child",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "delete-navigation-drawer-child",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "give-permission",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "revoke-permission",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "give-role",
+                "guard_name" => "api",
+            ],
+            [
+                "name"       => "revoke-role",
+                "guard_name" => "api",
             ],
         ]);
     }

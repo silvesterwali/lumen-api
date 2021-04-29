@@ -39,6 +39,14 @@ class AuthServiceProvider extends ServiceProvider
             return app('auth')->setRequest($request)->user();
         });
 
+        /**
+         * user has role as Super Admin will override all permission
+         * @see https://spatie.be/docs/laravel-permission/v4/basic-usage/super-admin
+         */
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole("Super Admin") ? true : null;
+        });
+
     }
     public function registerGate()
     {
