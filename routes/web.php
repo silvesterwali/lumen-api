@@ -97,4 +97,10 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->post("/revoke_navigation", "UserNavigationController@revokeNavigationFromUser");
     });
 
+    // give and revoke navigation to role
+    $router->group(["prefix" => "role_navigation"], function () use ($router) {
+        $router->post("/give_navigation", "NavigationAccordingRoleController@giveNavigationToRole");
+        $router->post("/revoke_navigation", "NavigationAccordingRoleController@revokeNavigationFromRole");
+    });
+
 });
