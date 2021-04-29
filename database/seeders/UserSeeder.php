@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
@@ -16,24 +16,23 @@ class UserSeeder extends Seeder
     {
         User::insert([
             [
-                "name"=>"super-admin",
-                "email"=>"super-admin@gmail.com",
-                "password"=>app("hash")->make("supersecret"),
-                "verified_email"=>true
+                "name"           => "super-admin",
+                "email"          => "super-admin@gmail.com",
+                "password"       => app("hash")->make("supersecret"),
+                "verified_email" => true,
             ],
             [
-                "name"=>"admin",
-                "email"=>"admin@gmail.com",
-                "password"=>app("hash")->make("supersecret"),
-                "verified_email"=>true
+                "name"           => "admin",
+                "email"          => "admin@gmail.com",
+                "password"       => app("hash")->make("supersecret"),
+                "verified_email" => true,
             ],
             [
-                "name"=>"finance",
-                "email"=>"finance@gmail.com",
-                "password"=>app("hash")->make("supersecret"),
-                "verified_email"=>true
+                "name"           => "client",
+                "email"          => "client@gmail.com",
+                "password"       => app("hash")->make("supersecret"),
+                "verified_email" => true,
             ],
-            
         ]);
     }
 }
