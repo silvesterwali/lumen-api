@@ -8,6 +8,7 @@ class NavigationDrawerChild extends Model
 {
     protected $table    = 'navigation_drawer_child';
     protected $fillable = ["name", "navigation_drawer_id", "path_name", "icon", "level", "description"];
+    protected $hidden   = ["created_at", "updated_at"];
 
     public function navigation_drawer()
     {

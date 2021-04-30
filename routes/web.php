@@ -89,7 +89,7 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
 
     // all navigation assigned to a user
-    $router->get("user_navigation_items/{user_id}", "UserNavigationItemController");
+    $router->get("navigation_items/{user_id}/user", "UserNavigationItemController");
 
     // give and revoke a user's navigation
     $router->group(["prefix" => "user_navigation"], function () use ($router) {
