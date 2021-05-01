@@ -23,7 +23,7 @@ The following are the basic routes that have been provided and are ready to use
 User registration and log in will go through this route
 
 ```
-    http:\\localhost:8000/api/register
+http:\\localhost:8000/api/register
 
 ```
 
@@ -38,22 +38,21 @@ http:\\localhost:8000/api/login
 if user want to log out 
 
 ```
-   http://localhost:8000/api/auth/logout
+http://localhost:8000/api/auth/logout
 
 ```
 
 refresh token (token only take 15 minutes) live
 
 ```
-
-   http://localhost:8000/api/auth/refresh
+http://localhost:8000/api/auth/refresh
 
 ```
 
 and user can access their basic information with this route
 
 ```
-   http://localhost:8000/api/auth/me
+http://localhost:8000/api/auth/me
 
 ```
 
