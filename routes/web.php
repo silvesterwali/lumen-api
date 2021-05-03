@@ -130,4 +130,14 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->post("/revoke-navigation", "NavigationAccordingRoleController@revokeNavigationFromRole");
     });
 
+    /**
+     * resource navigation dropdown
+     */
+    $router->group(["prefix" => "navigation_dropdown"], function () use ($router) {
+        $router->get('/', "NavigationDropdownController@index");
+        $router->post('/', "NavigationDropdownController@store");
+        $router->get('/{id}', "NavigationDropdownController@show");
+        $router->put('/{id}', "NavigationDropdownController@update");
+        $router->delete('/{id}', "NavigationDropdownController@destroy");
+    });
 });
