@@ -18,6 +18,7 @@ class CreateNavigationDropdownsTable extends Migration
             $table->string('name')->comment('name of the navigation dropdown');
             $table->string('path_name')->comment('path directory');
             $table->smallInteger('level')->default(0)->comment("hierarchy of menu drop down");
+            $table->string('icon')->comment('path directory');
             $table->string('description')->nullable();
             $table->timestamps();
         });
