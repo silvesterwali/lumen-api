@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NavigationDropdown extends Model
 {
-    protected $fillable = ["name", "path", "level", "icon", "description"];
+    protected $fillable = ["name", "path_name", "level", "icon", "description"];
 
     public static function boot()
     {
