@@ -23,7 +23,7 @@ class CreateUserDropdownsTable extends Migration
                 ->cascadeOnDelete("cascade");
             $table->foreign("navigation_dropdowns_id")
                 ->references("id")
-                ->on("navigation_dropdowns_id")
+                ->on("navigation_dropdowns")
                 ->cascadeOnDelete("cascade");
             $table->timestamps();
         });
