@@ -16,12 +16,12 @@ class CreateUserDropdownsTable extends Migration
         Schema::create('user_dropdowns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("user_id");
-            $table->unsignedBigInteger("navigation_dropdowns_id");
+            $table->unsignedBigInteger("navigation_dropdown_id");
             $table->foreign("user_id")
                 ->references("id")
                 ->on("users")
                 ->cascadeOnDelete("cascade");
-            $table->foreign("navigation_dropdowns_id")
+            $table->foreign("navigation_dropdown_id")
                 ->references("id")
                 ->on("navigation_dropdowns")
                 ->cascadeOnDelete("cascade");
