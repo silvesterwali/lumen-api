@@ -140,4 +140,13 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->put('/{id}', "NavigationDropdownController@update");
         $router->delete('/{id}', "NavigationDropdownController@destroy");
     });
+
+    /**
+     * resource user dropdown navigation
+     */
+    $router->group(["prefix" => "user-dropdown"], function () use ($router) {
+        $router->get("/", "UserDropdownController@index");
+        $router->post("/", "UserDropdownController@store");
+        $router->get("/{id}", "UserDropdownController@delete");
+    });
 });
