@@ -133,7 +133,7 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     /**
      * resource navigation dropdown
      */
-    $router->group(["prefix" => "navigation_dropdown"], function () use ($router) {
+    $router->group(["prefix" => "navigation-dropdown"], function () use ($router) {
         $router->get('/', "NavigationDropdownController@index");
         $router->post('/', "NavigationDropdownController@store");
         $router->get('/{id}', "NavigationDropdownController@show");
