@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserDropdown extends Model
 {
-    protected $fillable = ["user_id", "navigation_dropdowns_id"];
+    protected $fillable = ["user_id", "navigation_dropdown_id"];
 
     public function user()
     {

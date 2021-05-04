@@ -30,8 +30,12 @@ class UserDropdownController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ["user_id" => "required|integer", "navigation_dropdowns_id"]);
-        UserDropdown::updateOrCreate($request->only(['user_id', 'navigation_dropdowns_id']));
+        $this->validate($request, [
+            "user_id"                => "required|integer",
+            "navigation_dropdown_id" => "required|integer",
+        ]);
+        UserDropdown::updateOrCreate($request->only(['user_id', 'navigation_dropdown_id']));
+        return response(["message" => "Success to add user dropdown navigation"]);
     }
 
     /**
