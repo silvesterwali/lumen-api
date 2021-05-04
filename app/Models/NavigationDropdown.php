@@ -8,6 +8,11 @@ class NavigationDropdown extends Model
 {
     protected $fillable = ["name", "path_name", "level", "icon", "description"];
 
+    public function userDropdown()
+    {
+        return $this->hasMany(UserDropdown::class, "navigation_dropdown_id");
+    }
+
     public static function boot()
     {
         parent::boot();
