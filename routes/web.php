@@ -149,4 +149,9 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
         $router->post("/", "UserDropdownController@store");
         $router->get("/{id}", "UserDropdownController@delete");
     });
+
+    /**
+     * retrieve user dropdown navigation
+     */
+    $router->get("/user-dropdown-item/{user_id}/user", "UserDropdownItemsController");
 });
