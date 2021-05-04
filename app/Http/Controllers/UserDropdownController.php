@@ -14,7 +14,12 @@ class UserDropdownController extends Controller
      */
     public function index()
     {
-        //
+        $userDropdown = UserDropdown::with(["user", "navigationDropdown"])
+            ->whereHas("user")
+            ->whereHas("navigationDropdown")
+            ->paginate(50);
+
+        return response($userDropdown);
     }
 
     /**
@@ -25,40 +30,18 @@ class UserDropdownController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\UserDropdown  $userDropdown
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserDropdown $userDropdown)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserDropdown  $userDropdown
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UserDropdown $userDropdown)
-    {
-        //
+        $this->validate($request, ["user_id" => "required|integer", "navigation_dropdowns_id"]);
+        UserDropdown::updateOrCreate($request->only(['user_id', 'navigation_dropdowns_id']));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UserDropdown  $userDropdown
+     * @param  int id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserDropdown $userDropdown)
+    public function destroy($id)
     {
-        //
+        UserDropdown::findOrFail($id)->delete();
     }
 }
