@@ -7,12 +7,12 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Model implements JWTSubject, AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable,HasRoles;
+    use Authenticatable, Authorizable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
         'name', 'email',
     ];
 
-    protected $guard_name="api";
+    protected $guard_name = "api";
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -52,8 +52,5 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     {
         return [];
     }
-    public function isAdmin()
-    {
-        return $this->role === 0;
-    }
+
 }
