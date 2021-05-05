@@ -22,13 +22,6 @@ class NavigationAccordingRoleController extends Controller
             "navigation_drawer_child_id" => "required|integer",
         ]);
 
-        $role = Role::findByName($request->role);
-
-        if (!$role) {
-
-            return response(["message" => "The role you are aiming for does not exist"], Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-
         $users = User::role($request->role)->get();
 
         if (!$users) {
@@ -64,13 +57,6 @@ class NavigationAccordingRoleController extends Controller
             "role"                       => "required|string",
             "navigation_drawer_child_id" => "required|integer",
         ]);
-
-        $role = Role::findByName($request->role);
-
-        if (!$role) {
-
-            return response(["message" => "The role you are aiming for does not exist"], Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
 
         $users = User::role($request->role)->get();
 
