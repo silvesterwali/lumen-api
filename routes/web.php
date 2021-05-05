@@ -154,4 +154,9 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
      * retrieve user dropdown navigation
      */
     $router->get("/user-dropdown-item/{user_id}/user", "UserDropdownItemsController");
+
+    $router->group(["prefix" => "role-dropdown"], function () use ($router) {
+        $router->post("give-dropdown", "UserRoleToDropdownController@giveDropdown");
+        $router->post("revoke-dropdown", "UserRoleToDropdownController@revokeDropdown");
+    });
 });
