@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\NavigationDropdown;
 use Illuminate\Database\Seeder;
 
-class NavigationDrawerSeed extends Seeder
+class NavigationDropdownSeed extends Seeder
 {
     /**
      * Run the database seeds.

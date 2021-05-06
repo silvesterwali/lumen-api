@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
                 PermissionSeeder::class,
                 UserRoleSeeder::class,
                 NavigationSeeder::class,
+                NavigationDropdownSeed::class,
             ]
         );
     }
