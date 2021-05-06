@@ -23,8 +23,13 @@ class NavigationDrawerChild extends Model
     protected static function boot()
     {
         parent::boot();
+
         NavigationDrawerChild::creating(function ($model) {
-            $model->level = NavigationDrawerChild::max('level') + 1;
+
+            // access max on same navigation drawer id
+
+            $model->level = NavigationDrawerChild::where("navigation_drawer_id", $model->navigation_drawer_id)
+                ->max('level') + 1;
         });
     }
 
