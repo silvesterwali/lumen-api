@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class NavigationDrawerOrderController extends Controller
 {
+    /**
+     * move one step up from current level
+     * @param \Illuminate\Http\Request $request;
+     * @return \Illuminate\Http\Response;
+     */
     public function moveUp(Request $request)
     {
         $this->validate($request, [
@@ -26,6 +31,11 @@ class NavigationDrawerOrderController extends Controller
         return response(["message" => "Move up level success"]);
     }
 
+    /**
+     * move one step down from current level
+     * @param \Illuminate\Http\Request $request;
+     * @return \Illuminate\Http\Response ;
+     */
     public function moveDown(Request $request)
     {
         $this->validate($request, [
@@ -47,6 +57,11 @@ class NavigationDrawerOrderController extends Controller
         return response(["message" => "Move down level success"]);
     }
 
+    /**
+     * Internal helper for updating level
+     * @param int $id - id for the model
+     * @param int $level - level
+     */
     private function updateLevel($id, $level)
     {
         NavigationDrawer::find($id)->update(["level" => $level]);
