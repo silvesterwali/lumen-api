@@ -99,6 +99,16 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
 
     /**
+     * reorder the level hierarchy of navigation drawer
+     *
+     */
+    $router->group(["prefix" => "navigation-drawer-order"], function () use ($router) {
+        $router->post("/move-up", "NavigationDrawerOrderController@moveUp");
+        $router->post("/move-down", "NavigationDrawerOrderController@moveDown", );
+
+    });
+
+    /**
      * resource navigation drawer child
      */
     $router->group(["prefix" => "navigation-drawer-child"], function () use ($router) {
