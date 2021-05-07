@@ -10,7 +10,7 @@ Documentation for the framework can be found on the [Lumen website](https://lume
 
 The framework is created to make building your API application easier. Because there are some basics of what you need to develop the application such as authentication, permissions, rules and front-end page navigation.
 
-This framework has also implemented JWT (json web token) to help authenticate and spatie permissions packages in magement the rules and permissions .
+This framework has also implemented JWT (json web token) to help authenticate and Spatie permissions packages in management the rules and permissions .
 
 The authentication has login, logout, refresh, change password features . The Spatie Permission package is implemented to grant and revoke user permissions, as well as assign a rule to the user.
 
