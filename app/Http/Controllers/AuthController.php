@@ -86,11 +86,6 @@ class AuthController extends Controller
         return response()->json(Auth::user());
     }
 
-    public function reset_password()
-    {
-
-    }
-
     /**
      * Log the user out (Invalidate the token).
      *
