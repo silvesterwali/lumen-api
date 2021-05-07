@@ -14,7 +14,7 @@ class NavigationDrawerController extends Controller
      */
     public function index()
     {
-        $navigationDrawers = NavigationDrawer::orderBy('name', "asc")
+        $navigationDrawers = NavigationDrawer::orderBy('level', "asc")
             ->paginate(50);
         return response($navigationDrawers);
     }
