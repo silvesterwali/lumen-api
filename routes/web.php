@@ -99,8 +99,10 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
 
     /**
-     * reorder the level hierarchy of navigation drawer
-     *
+     * reorder the level hierarchy of navigation drawer,
+     * order level will effect to your client
+     * navigation drawer when they retrieve
+     * according given access
      */
     $router->group(["prefix" => "navigation-drawer-order"], function () use ($router) {
         $router->post("/move-up", "NavigationDrawerOrderController@moveUp");
