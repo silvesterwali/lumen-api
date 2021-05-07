@@ -5,78 +5,19 @@
 
 Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 
-clone this repo and don't forget to remove remote on this repo
+
+## What is this
+
+The framework is created to make building your API application easier. Because there are some basics of what you need to develop the application such as authentication, permissions, rules and front-end page navigation.
+
+This framework has also implemented JWT (json web token) to help authenticate and spatie permissions packages in magement the rules and permissions .
+
+The authentication has login, logout, refresh, change password features . The Spatie Permission package is implemented to grant and revoke user permissions, as well as assign a rule to the user.
+
+There is also a feature to set the pages that can be accessed by the front-end so that it makes it easier for users to navigate to complex pages and you can ignore this feature if your front-end pages are not so many.
 
 
-This project only helps you for the most basic of applications that you will develop, this project has been accompanied by authentication using jwt, roles and permissions from spatie and also basic settings for navigation needs on the front end
+## Open to contributors
 
-
-
-## Routes
-
-The following are the basic routes that have been provided and are ready to use
-
-
-
-### Authentication
-
-User registration and log in will go through this route
-
-```
-http:\\localhost:8000/api/register
-
-```
-
-```
-http:\\localhost:8000/api/login
-
-```
-
-#### If already authenticated
-
-
-if user want to log out 
-
-```
-http://localhost:8000/api/auth/logout
-
-```
-
-refresh token (token only take 15 minutes) live
-
-```
-http://localhost:8000/api/auth/refresh
-
-```
-
-and user can access their basic information with this route
-
-```
-http://localhost:8000/api/auth/me
-
-```
-
-
-### Role 
-
-this project is already implement Spatie permissions and for more information about [spatie Permission](https://spatie.be/docs/laravel-permission/v4/introduction)
-
-
-#### Basic
-
-for get ,create and delete role 
-
-get all roles resource  and will return it with pagination by default 50 row ,and also to create new role
-
-```
-http://localhost:8000/api/role/
-
-```
-
-and if needed you can take role by id
-
-```
-http://localhost:8000/api/role/{id}
-
-```
+If you want to help others, contribute your coding. There are no special rules, you just need to follow the rules in the Laravel framework
 
