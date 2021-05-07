@@ -35,6 +35,7 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
      */
     $router->group(["prefix" => "auth"], function () use ($router) {
         $router->post("logout", "AuthController@logout");
+        $router->post("password-change", "AuthPasswordChangeController");
         $router->get("refresh", "AuthController@refresh");
         $router->get("me", "AuthController@me");
     });
