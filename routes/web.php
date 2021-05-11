@@ -163,6 +163,14 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
 
     /**
+     * reorder level for dropdown menu
+     */
+    $router->group(["prefix" => "navigation-dropdown-order"], function () use ($router) {
+        $router->post("move-up", "NavigationDropdownOrderController@moveUp");
+        $router->post("move-down", "NavigationDropdownOrderController@moveDown");
+    });
+
+    /**
      * resource user dropdown navigation
      */
     $router->group(["prefix" => "user-dropdown"], function () use ($router) {
