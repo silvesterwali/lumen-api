@@ -123,6 +123,14 @@ $router->group(["middleware" => "auth:api", "prefix" => "api"], function () use 
     });
 
     /**
+     * sort level navigation drawer child
+     */
+    $router->group(["prefix" => "navigation-drawer-child-order"], function () use ($router) {
+        $router->post("/move-up", "NavigationDrawerChildOrderController@moveUp");
+        $router->post("/move-down", "NavigationDrawerChildOrderController@moveDown");
+    });
+
+    /**
      *  all navigation assigned to a user
      */
     $router->get("navigation_items/{user_id}/user", "UserNavigationItemController");
